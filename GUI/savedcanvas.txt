@@ -1,0 +1,12 @@
+mapperMinX: 185
+mapperMinY: 230
+mapperMaxX: 677
+mapperMaxY: 522
+mapperCenterX: 431
+mapperCenterY: 376
+numberofpoints: 5
+vertex[0]: X: 195 Y: 213
+vertex[1]: X: 180 Y: 525
+vertex[2]: X: 486 Y: 519
+vertex[3]: X: 667 Y: 509
+vertex[4]: X: 637 Y: 220

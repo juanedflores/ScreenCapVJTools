@@ -1,0 +1,6 @@
+Drawing Setup
+drawtext    type text blobs to grid
+screenshot        take a screenshot
+livenormal       live screencapture
+livechroma1      chroma redraw back
+livechroma2       chroma accumulate

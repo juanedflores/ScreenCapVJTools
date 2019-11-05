@@ -1,0 +1,11 @@
+General Commands
+menu           show the menu screen
+fullscreen         enter fullscreen
+normalscreen     enter normalscreen
+pause          stop processing loop
+resume        start processing loop
+redrawback        redraw background
+redrawfore        redraw foreground
+clearblobs    clear all saved blobs
+map            edit canvas and mask
+exit                   exit program

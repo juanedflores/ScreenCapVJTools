@@ -1,0 +1,4 @@
+Display Style
+random              random location
+accumulate      blobs will build up
+singlefile    draw one blob at once

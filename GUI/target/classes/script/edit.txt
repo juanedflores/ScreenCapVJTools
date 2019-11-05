@@ -1,0 +1,4 @@
+Edit Blobs
+lowres                  8-bit style
+explode       expand pixels outward
+undo        revert back to original

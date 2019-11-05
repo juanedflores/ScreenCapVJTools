@@ -1,0 +1,46 @@
+#N canvas 3802 175 1025 810 10;
+#X declare -lib mrpeach;
+#X obj 232 444 packOSC;
+#X obj 230 489 udpsend;
+#X obj 227 536 tgl 15 0 empty empty connected 20 7 0 8 -24198 -241291
+-1 0 1;
+#X msg 425 382 typetags \$1;
+#X obj 426 356 tgl 15 0 empty empty empty 17 7 0 10 -257985 -258113
+-1 0 1;
+#X obj 183 266 print;
+#X obj 182 204 routeOSC /maxIndex;
+#X msg 328 447 connect 127.0.0.1 8000;
+#X obj 143 149 unpackOSC;
+#X obj 80 236 print unpacked;
+#X msg 146 51 status;
+#X msg 204 51 port 9000;
+#X obj 143 105 udpreceive 127.0.0.1 9000;
+#X msg 229 381 send /bangGrid \$1;
+#X obj 226 265 random;
+#X floatatom 227 306 5 0 0 0 - - -;
+#X obj 227 240 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 317 243 metro 500;
+#X obj 316 202 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X floatatom 181 307 5 0 0 0 - - -;
+#X obj 370 63 import mrpeach;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 3 0 0 0;
+#X connect 4 0 3 0;
+#X connect 6 0 5 0;
+#X connect 6 0 14 1;
+#X connect 6 0 19 0;
+#X connect 7 0 1 0;
+#X connect 8 0 9 0;
+#X connect 8 0 6 0;
+#X connect 10 0 12 0;
+#X connect 11 0 12 0;
+#X connect 12 0 8 0;
+#X connect 13 0 0 0;
+#X connect 14 0 15 0;
+#X connect 15 0 13 0;
+#X connect 16 0 14 0;
+#X connect 17 0 16 0;
+#X connect 18 0 17 0;
