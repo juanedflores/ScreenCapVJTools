@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.Window;
 import javax.swing.BorderFactory;
@@ -23,6 +24,7 @@ public class GUI extends JFrame {
      * [GUI]
      */
     public static GUI mainGUI;
+    public static JLayeredPane gridCenterPanel;
     public static JLayeredPane centerPanel;
     public static Menu menu;
     public static Notification notification;
@@ -56,7 +58,8 @@ public class GUI extends JFrame {
         myProcessingSketch = new ProcessingSketch();                                          /// instantiate the Processing Sketch object.
         myProcessingSketch.init();
         // Processing JFrame
-        processingFrame = new JFrame("Processing");                                           /// set the title of the window.
+        processingFrame = new JFrame("Processing");
+
         processingFrame.setResizable(false);                                                  /// there is no need to have window resizable.
         processingFrame.setFocusableWindowState(false);                                       /// prevent this window to be focusable window.
         processingFrame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);                        /// closing the Processing window will do nothing.
@@ -142,12 +145,18 @@ public class GUI extends JFrame {
         centerPanel = new JLayeredPane();
         centerPanel.setBackground(Color.BLACK);
         centerPanel.setPreferredSize(new Dimension(1200, 600));
+
+        gridCenterPanel = new JLayeredPane();
+        gridCenterPanel.setLayout(new GridLayout(1, 2));
+        gridCenterPanel.setBackground(Color.BLACK);
+        gridCenterPanel.setPreferredSize(new Dimension(1200, 600));
+
         // add the editPanel.
-        centerPanel.add(editPanel);
-        centerPanel.setLayer(editPanel, 1);
+        //@ centerPanel.add(editPanel);
+        //@ centerPanel.setLayer(editPanel, 1);
         // add the menu.
-        centerPanel.add(menu.menuScrollPane);
-        centerPanel.setLayer(menu.menuScrollPane, 2);
+        //@ centerPanel.add(menu.menuScrollPane);
+        //@ centerPanel.setLayer(menu.menuScrollPane, 2);
         // add the button panel.
         centerPanel.add(gridPage);
         centerPanel.setLayer(gridPage, 3);
@@ -155,11 +164,11 @@ public class GUI extends JFrame {
         centerPanel.add(screenShotPanel);
         centerPanel.setLayer(screenShotPanel, 4);
         // add the sketchmapper panel.
-        centerPanel.add(sketchMapperPanel);
-        centerPanel.setLayer(sketchMapperPanel, 5);
+        //@ centerPanel.add(sketchMapperPanel);
+        //@ centerPanel.setLayer(sketchMapperPanel, 5);
         // add the notification panel.
-        centerPanel.add(notification);
-        centerPanel.setLayer(notification, 10);
+        //@ centerPanel.add(notification);
+        //@ centerPanel.setLayer(notification, 10);
         //#endregion
 
         /*
@@ -246,22 +255,35 @@ public class GUI extends JFrame {
             }
         }
 
-        //@ [DEBUGGING] printing the screen index. 
-        System.out.println("window is on screen: " + myScreenIndex);
-
         // determine what monitor the window is in and get the dimensions of it.
         currentDevice = allScreens[myScreenIndex];
         int fw = currentDevice.getDefaultConfiguration().getBounds().width;
         int fh = currentDevice.getDefaultConfiguration().getBounds().height;
 
+        gridCenterPanel.setBounds(0, 0, fw, fh);
+
         // change the mainCanvas of the Processing Sketch before we change the size of the JFrame.
-        GUI.myProcessingSketch.changeCanvasSize(fw, fh);
-        GUI.myProcessingSketch.frameW = fw;
+        GUI.myProcessingSketch.changeCanvasSize(fw / 2, fh);
+        GUI.myProcessingSketch.frameW = fw / 2;
         GUI.myProcessingSketch.frameH = fh;
-        GUI.myProcessingSketch.maskingCanvas = GUI.myProcessingSketch.createGraphics(fw, fh);
-        GUI.myProcessingSketch.maskingCanvas.beginDraw();
-        GUI.myProcessingSketch.maskingCanvas.background(0, 0);
-        GUI.myProcessingSketch.maskingCanvas.endDraw();
+        GUI.myProcessingSketch.foregroundCanvas.beginDraw();
+        GUI.myProcessingSketch.foregroundCanvas.background(0, 0);
+        GUI.myProcessingSketch.foregroundCanvas.endDraw();
+
+        GUI.myProcessingSketch.buttonCanvas = GUI.myProcessingSketch.createGraphics(fw / 2, fh);
+        GUI.myProcessingSketch.buttonCanvas.beginDraw();
+        GUI.myProcessingSketch.buttonCanvas.background(0);
+        GUI.myProcessingSketch.buttonCanvas.endDraw();
+
+        //@ put the buttongrid on the right side of the screen.
+        gridPage.setBounds(0, 0, fw / 2, fh);
+        gridPage.setBackground(Color.BLACK);
+
+        gridCenterPanel.add(myProcessingSketch);
+        gridCenterPanel.add(gridPage);
+
+        //@ add to center panel.
+        processingFrame.add(gridCenterPanel);
 
         // if there is more than one monitor, program will maximize the window in the current display that it is in.
         if (allScreens.length > 1) {

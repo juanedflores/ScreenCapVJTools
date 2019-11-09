@@ -163,6 +163,9 @@ public class ProcessingSketch extends PApplet {
 		oscP5.plug(this, "specifyLocation", "/setLocation");
 		oscP5.plug(this, "requestFrameDimensions", "/getDimensions");
 		oscP5.plug(this, "collectLiveBlobs", "/collectBlobs");
+		oscP5.plug(this, "pauseSketch", "/pause");
+		oscP5.plug(this, "resumeSketch", "/resume");
+		oscP5.plug(this, "collectOnly", "/collectOnly");
 		//#endregion
 	}
 
@@ -701,20 +704,6 @@ public class ProcessingSketch extends PApplet {
 		}
 		// store the last button pressed into this global variable.
 		GUI.gridPage.lastButtonPressed = buttonNum;
-
-		// @ Do Something. Display Style.
-		if (!displayStyle.equals("")) {
-			switch (displayStyle) {
-				case "random":
-					GUI.myProcessingSketch.blobRandom(sortedIndex);
-					break;
-			}
-		} else {
-			// there is no display style selected.
-			GUI.menu.menuMode(3);
-			GUI.notification.setMessage("select a display style first", GUI.notification.warning, false);
-			GUI.notification.charIndex = GUI.notification.message.length();
-		}
 	}
 
 	void receiveCanvasToDraw(int canvasNum_) { // OSC: [DONE]
@@ -883,6 +872,26 @@ public class ProcessingSketch extends PApplet {
 
 		System.out.println("scaledRect: " + GUI.screenCapDisplay.scaledUpRect.x);
 
+		/// #cleaned [collect]
+		// scan the rectangle windows
+		GUI.screenCapDisplay.getSliceImg();
+		collectScreenshotBlbs();
+
+		// disable all rect related buttons.
+		GUI.screenCapInfo.collectButton.setEnabled(false);
+		GUI.screenCapInfo.saveLiveRectButton.setEnabled(false);
+		//#endregion
+	}
+
+	void pauseSketch(String bang_) { // OSC [DONE]
+		noLoop();
+	}
+
+	void resumeSketch(String bang_) { // OSC [DONE]
+		loop();
+	}
+
+	void collectOnly(String bang_) { // OSC [DONE]
 		/// #cleaned [collect]
 		// scan the rectangle windows
 		GUI.screenCapDisplay.getSliceImg();

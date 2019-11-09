@@ -169,6 +169,7 @@ public class Gridpage extends JPanel {
 			for (int row = 0; row < rows_; row++) {
 				int boxMinX = row * (GUI.myProcessingSketch.buttonCanvas.width / rows_);
 				int boxMinY = col * (GUI.myProcessingSketch.buttonCanvas.height / cols_);
+				System.out.println("row: " + row + " col: " + col);
 
 				// draw the index number in corner.
 				if (count > sortedBlobs.size() - 1 - index_) {
@@ -351,15 +352,15 @@ public class Gridpage extends JPanel {
 		}
 
 		// draw the grid
-		GUI.myProcessingSketch.buttonCanvas.stroke(255);
-		for (int row = 1; row < rows; row++) {
-			for (int col = 1; col < cols; col++) {
-				GUI.myProcessingSketch.buttonCanvas.line(col * (GUI.myProcessingSketch.buttonCanvas.height / cols), 0, col * (GUI.myProcessingSketch.buttonCanvas.height / cols), GUI.myProcessingSketch.buttonCanvas.height);
-			}
-			GUI.myProcessingSketch.buttonCanvas.line(0, (GUI.myProcessingSketch.buttonCanvas.width / rows) * row, GUI.myProcessingSketch.buttonCanvas.width, (GUI.myProcessingSketch.buttonCanvas.width / rows) * row);
-		}
+		// GUI.myProcessingSketch.buttonCanvas.stroke(255);
+		// for (int row = 1; row < rows; row++) {
+		// 	for (int col = 1; col < cols; col++) {
+		// 		GUI.myProcessingSketch.buttonCanvas.line(col * (GUI.myProcessingSketch.buttonCanvas.height / cols), 0, col * (GUI.myProcessingSketch.buttonCanvas.height / cols), GUI.myProcessingSketch.buttonCanvas.height);
+		// 	}
+		// 	//@ GUI.myProcessingSketch.buttonCanvas.line(0, (GUI.myProcessingSketch.buttonCanvas.width / rows) * row, GUI.myProcessingSketch.buttonCanvas.width, (GUI.myProcessingSketch.buttonCanvas.width / rows) * row);
+		// }
 
-		GUI.myProcessingSketch.buttonCanvas.endDraw();
+		// GUI.myProcessingSketch.buttonCanvas.endDraw();
 		//#endregion
 
 		// remove all previous buttons from panel 
@@ -369,8 +370,8 @@ public class Gridpage extends JPanel {
 		createGridButtons(rows, cols, pageNum * (maxRowsCols * maxRowsCols));
 
 		// revalidate and repaint GUI.
-		GUI.mainGUI.revalidate();
-		GUI.mainGUI.repaint();
+		GUI.processingFrame.revalidate();
+		GUI.processingFrame.repaint();
 
 		// OSC: update any listening program of the array size in grid.
 		GUI.myProcessingSketch.sendSortedBlobAmount();
