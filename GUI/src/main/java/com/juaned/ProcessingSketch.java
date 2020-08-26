@@ -4,9 +4,9 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import netP5.NetAddress;
-import oscP5.OscMessage;
-import oscP5.OscP5;
+//import netP5.NetAddress;
+//import oscP5.OscMessage;
+//import oscP5.OscP5;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PFont;
@@ -57,8 +57,8 @@ public class ProcessingSketch extends PApplet {
 	 * [OSC]
 	 */
 	/// #cleaned [OSC]
-	OscP5 oscP5;
-	NetAddress myRemoteLocation;
+	//OscP5 oscP5;
+	//NetAddress myRemoteLocation;
 	//#endregion
 
 	/*
@@ -146,6 +146,7 @@ public class ProcessingSketch extends PApplet {
 		/*
 		 * [OSC]
 		 */
+		/*
 		/// #cleaned [OSC]
 		oscP5 = new OscP5(this, 8000); /// receive osc messages.
 		myRemoteLocation = new NetAddress("127.0.0.1", 9000); /// send osc messages.
@@ -167,6 +168,8 @@ public class ProcessingSketch extends PApplet {
 		oscP5.plug(this, "resumeSketch", "/resume");
 		oscP5.plug(this, "collectOnly", "/collectOnly");
 		//#endregion
+		 * 
+		 */
 	}
 
 	public void draw() {
@@ -827,25 +830,25 @@ public class ProcessingSketch extends PApplet {
 	void receiveIndexForArea(int index_) { // OSC: [DONE]
 
 		// get the blob being requested.
-		Blob b = GUI.gridPage.sortedBlobs.get(index_);
+		//Blob b = GUI.gridPage.sortedBlobs.get(index_);
 
 		// program listening should have the /blobArea header to receive the int.
-		OscMessage myMessage = new OscMessage("/blobArea");
+		//OscMessage myMessage = new OscMessage("/blobArea");
 		// add the area of the requested blob.
-		myMessage.add(b.getArea());
+		//myMessage.add(b.getArea());
 		// send the message.
-		oscP5.send(myMessage, myRemoteLocation);
+		//oscP5.send(myMessage, myRemoteLocation);
 	}
 
 	void requestFrameDimensions(String bang_) { // OSC: [DONE]
 
 		// program listening should have the /blobArea header to receive the int.
-		OscMessage myMessage = new OscMessage("/dimensions");
+		//OscMessage myMessage = new OscMessage("/dimensions");
 		// add the area of the requested blob.
-		myMessage.add(frameW);
-		myMessage.add(frameH);
+		//myMessage.add(frameW);
+		//myMessage.add(frameH);
 		// send the message.
-		oscP5.send(myMessage, myRemoteLocation);
+		//oscP5.send(myMessage, myRemoteLocation);
 	}
 
 	void collectLiveBlobs(String bang_) { // OSC: [DONE]
@@ -909,10 +912,10 @@ public class ProcessingSketch extends PApplet {
 		 * blobs are contained in the grid. these are in the sortedBlobs array.
 		 */
 		// program listening should have the /sortedBlobs header to receive the int.
-		OscMessage myMessage = new OscMessage("/maxIndex");
+		//OscMessage myMessage = new OscMessage("/maxIndex");
 		// add the size of the sortedBlobs array.
-		myMessage.add(GUI.gridPage.sortedBlobs.size());
+		//myMessage.add(GUI.gridPage.sortedBlobs.size());
 		// send the message.
-		oscP5.send(myMessage, myRemoteLocation);
+		//oscP5.send(myMessage, myRemoteLocation);
 	}
 }

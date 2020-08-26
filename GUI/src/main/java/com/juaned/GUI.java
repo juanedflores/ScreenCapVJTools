@@ -152,11 +152,11 @@ public class GUI extends JFrame {
         gridCenterPanel.setPreferredSize(new Dimension(1200, 600));
 
         // add the editPanel.
-        //@ centerPanel.add(editPanel);
-        //@ centerPanel.setLayer(editPanel, 1);
+        centerPanel.add(editPanel);
+        centerPanel.setLayer(editPanel, 1);
         // add the menu.
-        //@ centerPanel.add(menu.menuScrollPane);
-        //@ centerPanel.setLayer(menu.menuScrollPane, 2);
+        centerPanel.add(menu.menuScrollPane);
+        centerPanel.setLayer(menu.menuScrollPane, 2);
         // add the button panel.
         centerPanel.add(gridPage);
         centerPanel.setLayer(gridPage, 3);
@@ -164,11 +164,11 @@ public class GUI extends JFrame {
         centerPanel.add(screenShotPanel);
         centerPanel.setLayer(screenShotPanel, 4);
         // add the sketchmapper panel.
-        //@ centerPanel.add(sketchMapperPanel);
-        //@ centerPanel.setLayer(sketchMapperPanel, 5);
+        centerPanel.add(sketchMapperPanel);
+        centerPanel.setLayer(sketchMapperPanel, 5);
         // add the notification panel.
-        //@ centerPanel.add(notification);
-        //@ centerPanel.setLayer(notification, 10);
+        centerPanel.add(notification);
+        centerPanel.setLayer(notification, 10);
         //#endregion
 
         /*
