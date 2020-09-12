@@ -28,7 +28,7 @@ public class ProcessingSketch extends PApplet {
 	/// #cleaned [ArrayLists]
 	public static ArrayList<Blob> Blobs;
 	public static ArrayList<Blob> liveCapBlobs;
-	//#endregion
+	// #endregion
 
 	/*
 	 * [drawtText]
@@ -36,7 +36,7 @@ public class ProcessingSketch extends PApplet {
 	/// #cleaned [drawText]
 	PFont font;
 	int fontSize = 90;
-	//#endregion
+	// #endregion
 
 	/*
 	 * [PGraphics]
@@ -51,15 +51,15 @@ public class ProcessingSketch extends PApplet {
 	int whichLayerToDraw = 1;
 	int canvasMinX = 0;
 	int canvasMinY = 0;
-	//#endregion
+	// #endregion
 
 	/*
 	 * [OSC]
 	 */
 	/// #cleaned [OSC]
-	//OscP5 oscP5;
-	//NetAddress myRemoteLocation;
-	//#endregion
+	// OscP5 oscP5;
+	// NetAddress myRemoteLocation;
+	// #endregion
 
 	/*
 	 * [Live]
@@ -69,17 +69,17 @@ public class ProcessingSketch extends PApplet {
 	boolean livenormal = true;
 	boolean livechroma = false;
 	boolean chromaRedraw = true;
-	//#endregion
+	// #endregion
 
-	/* 
+	/*
 	 * [Display Style]
 	 */
 	/// #cleaned [Display Style]
 	String displayStyle = "";
 	Boolean accumulate = true;
-	//#endregion
+	// #endregion
 
-	/* 
+	/*
 	 * [Scan Values]
 	 */
 	/// #cleaned [Scan Values]
@@ -87,8 +87,7 @@ public class ProcessingSketch extends PApplet {
 	float avgColThresholdChroma = 100; /// background threshold.
 	boolean avgColInverted = false;
 	float darknessThreshold = 100;
-	//#endregion
-
+	// #endregion
 
 	public void setup() {
 		size(1080, 720);
@@ -98,14 +97,14 @@ public class ProcessingSketch extends PApplet {
 		 */
 		/// #cleaned [ArrayLists]
 		Blobs = new ArrayList<Blob>();
-		//#endregion
+		// #endregion
 
 		/*
 		 * [drawText]
 		 */
 		/// #cleaned [drawText]
 		font = createFont("Georgia", 32);
-		//#endregion
+		// #endregion
 
 		/*
 		 * [PGraphics]
@@ -141,33 +140,28 @@ public class ProcessingSketch extends PApplet {
 		maskingCanvas.beginDraw();
 		maskingCanvas.background(0, 0);
 		maskingCanvas.endDraw();
-		//#endregion
+		// #endregion
 
 		/*
 		 * [OSC]
 		 */
 		/*
-		/// #cleaned [OSC]
-		oscP5 = new OscP5(this, 8000); /// receive osc messages.
-		myRemoteLocation = new NetAddress("127.0.0.1", 9000); /// send osc messages.
-		// set up any osc message received to send to the appropriate methods.
-		oscP5.plug(this, "changeBlobOpacity", "/blobOpacity");
-		oscP5.plug(this, "changeBlobScale", "/blobScale");
-		oscP5.plug(this, "makeOriginal", "/makeOriginal");
-		oscP5.plug(this, "receiveBangGrid", "/bangGrid");
-		oscP5.plug(this, "receiveCanvasToDraw", "/canvas");
-		oscP5.plug(this, "receiveLiveChromaValues", "/liveChroma");
-		oscP5.plug(this, "receiveBangLiveCapture", "/bangLive");
-		oscP5.plug(this, "receiveLiveStyle", "/liveStyle");
-		oscP5.plug(this, "receiveBangRedrawLive", "/redrawLiveBack");
-		oscP5.plug(this, "receiveIndexForArea", "/getArea");
-		oscP5.plug(this, "specifyLocation", "/setLocation");
-		oscP5.plug(this, "requestFrameDimensions", "/getDimensions");
-		oscP5.plug(this, "collectLiveBlobs", "/collectBlobs");
-		oscP5.plug(this, "pauseSketch", "/pause");
-		oscP5.plug(this, "resumeSketch", "/resume");
-		oscP5.plug(this, "collectOnly", "/collectOnly");
-		//#endregion
+		 * /// #cleaned [OSC] oscP5 = new OscP5(this, 8000); /// receive osc messages.
+		 * myRemoteLocation = new NetAddress("127.0.0.1", 9000); /// send osc messages.
+		 * // set up any osc message received to send to the appropriate methods.
+		 * oscP5.plug(this, "changeBlobOpacity", "/blobOpacity"); oscP5.plug(this,
+		 * "changeBlobScale", "/blobScale"); oscP5.plug(this, "makeOriginal",
+		 * "/makeOriginal"); oscP5.plug(this, "receiveBangGrid", "/bangGrid");
+		 * oscP5.plug(this, "receiveCanvasToDraw", "/canvas"); oscP5.plug(this,
+		 * "receiveLiveChromaValues", "/liveChroma"); oscP5.plug(this,
+		 * "receiveBangLiveCapture", "/bangLive"); oscP5.plug(this, "receiveLiveStyle",
+		 * "/liveStyle"); oscP5.plug(this, "receiveBangRedrawLive", "/redrawLiveBack");
+		 * oscP5.plug(this, "receiveIndexForArea", "/getArea"); oscP5.plug(this,
+		 * "specifyLocation", "/setLocation"); oscP5.plug(this,
+		 * "requestFrameDimensions", "/getDimensions"); oscP5.plug(this,
+		 * "collectLiveBlobs", "/collectBlobs"); oscP5.plug(this, "pauseSketch",
+		 * "/pause"); oscP5.plug(this, "resumeSketch", "/resume"); oscP5.plug(this,
+		 * "collectOnly", "/collectOnly"); //#endregion
 		 * 
 		 */
 	}
@@ -187,9 +181,9 @@ public class ProcessingSketch extends PApplet {
 	}
 
 	void liveCapture() { // DRAWING: [DONE]
-		/* 
-		 * constantly take a screenshot of a drawn rectangle and get the
-		 * img to be displayed in the liveCapture PGraphics canvas.
+		/*
+		 * constantly take a screenshot of a drawn rectangle and get the img to be
+		 * displayed in the liveCapture PGraphics canvas.
 		 */
 
 		// get a screenshot of the determined rectangle of screen.
@@ -212,7 +206,7 @@ public class ProcessingSketch extends PApplet {
 				liveCapture.endDraw();
 			}
 		}
-		//#endregion
+		// #endregion
 
 		/// #cleaned [if livechroma]
 		if (livechroma) {
@@ -237,7 +231,7 @@ public class ProcessingSketch extends PApplet {
 				liveCapture.endDraw();
 			}
 		}
-		//#endregion
+		// #endregion
 	}
 
 	void drawTextGrid(String text_) { // DRAWING: [DONE]
@@ -259,7 +253,7 @@ public class ProcessingSketch extends PApplet {
 		drawTextCanvas.text(text_, 600 / 2, (600 / 4) * 3);
 
 		drawTextCanvas.endDraw();
-		//#endregion
+		// #endregion
 
 		// scan the canvas and store them in the array as Blobs.
 		scan(drawTextCanvas);
@@ -291,7 +285,7 @@ public class ProcessingSketch extends PApplet {
 		// get the blob we want.
 		Blob b = GUI.gridPage.sortedBlobs.get(arrayIndex_);
 
-		//@ choosing which layer to draw in.
+		// @ choosing which layer to draw in.
 		if (whichLayerToDraw == 0) {
 			backgroundCanvas.beginDraw();
 			b.showBlobAtPoint(this, backgroundCanvas, randomX, randomY);
@@ -306,12 +300,12 @@ public class ProcessingSketch extends PApplet {
 		loop();
 	}
 
-	void specifyLocation(int arrayIndex_, int x_, int y_) { // DISPLAY: 
+	void specifyLocation(int arrayIndex_, int x_, int y_) { // DISPLAY:
 
 		// get the blob we want.
 		Blob b = GUI.gridPage.sortedBlobs.get(arrayIndex_);
 
-		//@ choosing which layer to draw in.
+		// @ choosing which layer to draw in.
 		if (whichLayerToDraw == 0) {
 			backgroundCanvas.beginDraw();
 			b.showBlobAtPoint(this, backgroundCanvas, x_, y_);
@@ -326,22 +320,22 @@ public class ProcessingSketch extends PApplet {
 		loop();
 	}
 
-	void changeBlobOpacity(int arrayIndex_, int opacity_) { // EDIT: [DONE] 
-		/* 
-		 * changes the alpha value of any individual blob. 
+	void changeBlobOpacity(int arrayIndex_, int opacity_) { // EDIT: [DONE]
+		/*
+		 * changes the alpha value of any individual blob.
 		 */
 
-		// get the blob we want. 
+		// get the blob we want.
 		Blob b = GUI.gridPage.sortedBlobs.get(arrayIndex_);
 		// change its opacity.
 		b.setOpacity(opacity_);
 	}
 
-	void changeBlobScale(int arrayIndex_, int scale_) { // EDIT: [DONE] 
-		/* 
-		 * changes the scale value of any individual blob. 
+	void changeBlobScale(int arrayIndex_, int scale_) { // EDIT: [DONE]
+		/*
+		 * changes the scale value of any individual blob.
 		 */
-		// get the blob we want.  
+		// get the blob we want.
 		Blob b = GUI.gridPage.sortedBlobs.get(arrayIndex_);
 
 		// change its opacity.
@@ -349,11 +343,11 @@ public class ProcessingSketch extends PApplet {
 	}
 
 	void makeOriginal(int arrayIndex_) { // EDIT [DONE]
-		/* 
-		 * reverts back to the original blob. 
+		/*
+		 * reverts back to the original blob.
 		 */
 
-		// get the blob we want.  
+		// get the blob we want.
 		Blob b = GUI.gridPage.sortedBlobs.get(arrayIndex_);
 
 		// if there is a originalPoints array saved, transfer back to points array.
@@ -400,7 +394,7 @@ public class ProcessingSketch extends PApplet {
 		loop();
 	}
 
-	void createMask(int[] x_, int[] y_) {  // GENERAL: [DONE]
+	void createMask(int[] x_, int[] y_) { // GENERAL: [DONE]
 
 		maskingCanvas.beginDraw();
 		maskingCanvas.background(0);
@@ -433,7 +427,7 @@ public class ProcessingSketch extends PApplet {
 		loop();
 	}
 
-	void scan(PGraphics canvas) { //@ NEEDS WORK
+	void scan(PGraphics canvas) { // @ NEEDS WORK
 		/*
 		 * scan a PGraphics canvas to store temporarily in the Blobs array.
 		 */
@@ -475,7 +469,7 @@ public class ProcessingSketch extends PApplet {
 		}
 	}
 
-	void scan(PImage img_) { //@ NEEDS WORK
+	void scan(PImage img_) { // @ NEEDS WORK
 		/*
 		 * scan a PImage to store temporarily in the Blobs array.
 		 */
@@ -515,7 +509,7 @@ public class ProcessingSketch extends PApplet {
 		GUI.gridPage.addBlobsToGrid();
 	}
 
-	void collectLiveCapBlobs(PImage img_) { //@ NOT IMPLEMENTED YET
+	void collectLiveCapBlobs(PImage img_) { // @ NOT IMPLEMENTED YET
 
 		int avgColor = avgColor(img_);
 		img_.loadPixels();
@@ -569,7 +563,7 @@ public class ProcessingSketch extends PApplet {
 	}
 
 	PImage chromaKeyImage(PImage img_) { /// [DONE]
-		/* 
+		/*
 		 * make a target pixel (according to a dominant color threshold) transparent.
 		 */
 
@@ -602,7 +596,7 @@ public class ProcessingSketch extends PApplet {
 	}
 
 	int avgColor(PImage img_) { /// [DONE]
-		/* 
+		/*
 		 * returns the average color of an image. (dominant color)
 		 */
 
@@ -635,7 +629,7 @@ public class ProcessingSketch extends PApplet {
 	}
 
 	BufferedImage getTotalCanvasImg() { /// [DONE]
-		/* 
+		/*
 		 * returns an image of the sum of all PGraphics layers.
 		 */
 		// initialize the result image.
@@ -667,7 +661,7 @@ public class ProcessingSketch extends PApplet {
 	}
 
 	PImage convertToPImage(BufferedImage img_) { /// [DONE]
-		/* 
+		/*
 		 * converts a entered BufferedImage into a PImage.
 		 */
 		try {
@@ -711,8 +705,8 @@ public class ProcessingSketch extends PApplet {
 
 	void receiveCanvasToDraw(int canvasNum_) { // OSC: [DONE]
 		/*
-		 * a number is received corresponding to a canvas that will
-		 * later determine where the next output is going.
+		 * a number is received corresponding to a canvas that will later determine
+		 * where the next output is going.
 		 */
 		whichLayerToDraw = canvasNum_;
 	}
@@ -731,8 +725,9 @@ public class ProcessingSketch extends PApplet {
 
 	void receiveBangLiveCapture(String bang_) { // OSC: [DONE]
 		/*
-		 * will receive a bang that will take and display the most current screenshot of a selected
-		 * rectangle. will receive a warning if there is no rectangle selected yet.
+		 * will receive a bang that will take and display the most current screenshot of
+		 * a selected rectangle. will receive a warning if there is no rectangle
+		 * selected yet.
 		 */
 
 		if (GUI.screenCapDisplay.sliceImg != null) {
@@ -817,7 +812,7 @@ public class ProcessingSketch extends PApplet {
 	}
 
 	void receiveBangRedrawLive(String bang_) { // OSC: [DONE]
-		/* 
+		/*
 		 * redraw the background of liveCapture PGraphics canvas.
 		 */
 
@@ -830,25 +825,25 @@ public class ProcessingSketch extends PApplet {
 	void receiveIndexForArea(int index_) { // OSC: [DONE]
 
 		// get the blob being requested.
-		//Blob b = GUI.gridPage.sortedBlobs.get(index_);
+		// Blob b = GUI.gridPage.sortedBlobs.get(index_);
 
 		// program listening should have the /blobArea header to receive the int.
-		//OscMessage myMessage = new OscMessage("/blobArea");
+		// OscMessage myMessage = new OscMessage("/blobArea");
 		// add the area of the requested blob.
-		//myMessage.add(b.getArea());
+		// myMessage.add(b.getArea());
 		// send the message.
-		//oscP5.send(myMessage, myRemoteLocation);
+		// oscP5.send(myMessage, myRemoteLocation);
 	}
 
 	void requestFrameDimensions(String bang_) { // OSC: [DONE]
 
 		// program listening should have the /blobArea header to receive the int.
-		//OscMessage myMessage = new OscMessage("/dimensions");
+		// OscMessage myMessage = new OscMessage("/dimensions");
 		// add the area of the requested blob.
-		//myMessage.add(frameW);
-		//myMessage.add(frameH);
+		// myMessage.add(frameW);
+		// myMessage.add(frameH);
 		// send the message.
-		//oscP5.send(myMessage, myRemoteLocation);
+		// oscP5.send(myMessage, myRemoteLocation);
 	}
 
 	void collectLiveBlobs(String bang_) { // OSC: [DONE]
@@ -871,7 +866,7 @@ public class ProcessingSketch extends PApplet {
 		GUI.gridPage.pageNumLabel.setVisible(false);
 
 		GUI.gridPage.pagePanel.setVisible(false);
-		//#endregion
+		// #endregion
 
 		System.out.println("scaledRect: " + GUI.screenCapDisplay.scaledUpRect.x);
 
@@ -883,7 +878,7 @@ public class ProcessingSketch extends PApplet {
 		// disable all rect related buttons.
 		GUI.screenCapInfo.collectButton.setEnabled(false);
 		GUI.screenCapInfo.saveLiveRectButton.setEnabled(false);
-		//#endregion
+		// #endregion
 	}
 
 	void pauseSketch(String bang_) { // OSC [DONE]
@@ -903,7 +898,7 @@ public class ProcessingSketch extends PApplet {
 		// disable all rect related buttons.
 		GUI.screenCapInfo.collectButton.setEnabled(false);
 		GUI.screenCapInfo.saveLiveRectButton.setEnabled(false);
-		//#endregion
+		// #endregion
 	}
 
 	void sendSortedBlobAmount() { // OSC: [DONE]
@@ -912,10 +907,10 @@ public class ProcessingSketch extends PApplet {
 		 * blobs are contained in the grid. these are in the sortedBlobs array.
 		 */
 		// program listening should have the /sortedBlobs header to receive the int.
-		//OscMessage myMessage = new OscMessage("/maxIndex");
+		// OscMessage myMessage = new OscMessage("/maxIndex");
 		// add the size of the sortedBlobs array.
-		//myMessage.add(GUI.gridPage.sortedBlobs.size());
+		// myMessage.add(GUI.gridPage.sortedBlobs.size());
 		// send the message.
-		//oscP5.send(myMessage, myRemoteLocation);
+		// oscP5.send(myMessage, myRemoteLocation);
 	}
 }

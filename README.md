@@ -1,2 +1,2 @@
 # Luminaria2019GUI
-Our GUI for Luminaria 2019
+Our GUI for Luminaria 2019.
